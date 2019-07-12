@@ -1,0 +1,10 @@
+canvas {
+    background-color: #000;
+    display: block;
+    margin: 0 auto;
+}
+
+#timer {
+    font: Arial 16 bold;
+    text-align: center;
+}

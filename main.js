@@ -1,10 +1,3 @@
-/* TODO
-
-- Paddles drehbar machen (pitch)
-  => Physik einbauen (Einfallswinkel = Ausfallswinkel)
-
-*/
-
 var canvas      = document.getElementById("gameCanvas")
 var ctx         = canvas.getContext("2d")
 
@@ -177,5 +170,7 @@ function touchHandler(e) {
             // Right Touch
             pl2posY = e.touches[0].pageY - paddleH / 2
         }
+      
+        e.preventDefault();
     }
 }

@@ -112,7 +112,7 @@ function draw() {
     //      Players
     if((posY + dposY > pl1posY && posY + dposY < pl1posY + paddleH && posX + dposX < pl1posX + paddleW + ballRadius) || (posY + dposY > pl2posY && posY + dposY < pl2posY + paddleH && posX + dposX > pl2posX - ballRadius)) {
         dposX = -dposX
-        if(Math.abs(dposX) < 9 * factor) {
+        if(Math.abs(dposX) < 11 * factor) {
             dposX *= ballAccel
         }
     }

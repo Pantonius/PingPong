@@ -87,30 +87,6 @@ function drawPlayerTwo() {
     ctx.closePath()
 }
 
-function keyDownHandler(e) {
-    console.log(e.keyCode)
-
-    // Player One Control  [Up - W | Down - S] / [W - 87 | S - 83]
-    if(e.keyCode == 87) { pl1keyUP = true }
-    else if(e.keyCode == 83) { pl1keyDOWN = true }
-
-    //Player Two Control  [Up - ArrowUp | Down - ArrowDown] / [AUp - 38 | ADown - 40]
-    if(e.keyCode == 38) { pl2keyUP = true }
-    else if(e.keyCode == 40) { pl2keyDOWN = true }
-}
-
-function keyUpHandler(e) {
-    console.log(e.keyCode)
-
-    // Player One Control  [Up - W | Down - S] / [W - 87 | S - 83]
-    if(e.keyCode == 87) { pl1keyUP = false }
-    else if(e.keyCode == 83) { pl1keyDOWN = false }
-
-    //Player Two Control  [Up - ArrowUp | Down - ArrowDown] / [AUp - 38 | ADown - 40]
-    if(e.keyCode == 38) { pl2keyUP = false }
-    else if(e.keyCode == 40) { pl2keyDOWN = false }
-}
-
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -164,3 +140,42 @@ var interval = setInterval(draw, refreshRate)
 
 document.addEventListener("keydown", keyDownHandler)
 document.addEventListener("keyup", keyUpHandler)
+
+document.addEventListener("touchstart", touchHandler)
+document.addEventListener("touchmove", touchHandler)
+
+function keyDownHandler(e) {
+    console.log(e.keyCode)
+
+    // Player One Control  [Up - W | Down - S] / [W - 87 | S - 83]
+    if(e.keyCode == 87) { pl1keyUP = true }
+    else if(e.keyCode == 83) { pl1keyDOWN = true }
+
+    //Player Two Control  [Up - ArrowUp | Down - ArrowDown] / [AUp - 38 | ADown - 40]
+    if(e.keyCode == 38) { pl2keyUP = true }
+    else if(e.keyCode == 40) { pl2keyDOWN = true }
+}
+
+function keyUpHandler(e) {
+    console.log(e.keyCode)
+
+    // Player One Control  [Up - W | Down - S] / [W - 87 | S - 83]
+    if(e.keyCode == 87) { pl1keyUP = false }
+    else if(e.keyCode == 83) { pl1keyDOWN = false }
+
+    //Player Two Control  [Up - ArrowUp | Down - ArrowDown] / [AUp - 38 | ADown - 40]
+    if(e.keyCode == 38) { pl2keyUP = false }
+    else if(e.keyCode == 40) { pl2keyDOWN = false }
+}
+
+function touchHandler(e) {
+    if(e.touches) {
+        if(e.touches[0].pageX < canvas.width / 2) {
+            // Left Touch
+            pl1posY = e.touches[0].pageY
+        } else {
+            // Right Touch
+            pl2posY = e.touches[0].pageY
+        }
+    }
+}

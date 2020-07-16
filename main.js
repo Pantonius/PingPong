@@ -163,7 +163,7 @@ function keyUpHandler(e) {
 
 function touchHandler(e) {
     if(e.touches) {
-        for(var i = 0; i < touches.size; i++) {
+        for(var i = 0; i < touches.length; i++) {
             if(e.touches[i].pageX < canvas.width / 2) {
                 // Left Touch -> P1
                 pl1posY = e.touches[i].pageY - paddleH / 2

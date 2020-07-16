@@ -18,11 +18,13 @@ var refreshRate = 10 // miliseconds
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
+var factor = canvas.width / 1000
+
 // Ball
 var posX = canvas.width / 2
 var posY = canvas.height / 2
 var dposY = (Math.random() - .5) * 2
-var dposX = 2 - (dposY / 2)
+var dposX = (2 - (dposY / 2)) * factor
 
 if(dposY < 0) {
     dposX = -dposX
@@ -30,13 +32,13 @@ if(dposY < 0) {
 
 var ballRadius = 10
 
-var ballAccel = 1.2
+var ballAccel = 1.18
 
 // Players
 var paddleW = 15
 var paddleH = 125
 
-var paddleMargin = 10
+var paddleMargin = 16
 
 var pl1posX = paddleMargin
 var pl1posY = canvas.height/2 - paddleH/2
@@ -109,7 +111,10 @@ function draw() {
     
     //      Players
     if((posY + dposY > pl1posY && posY + dposY < pl1posY + paddleH && posX + dposX < pl1posX + paddleW + ballRadius) || (posY + dposY > pl2posY && posY + dposY < pl2posY + paddleH && posX + dposX > pl2posX - ballRadius)) {
-        dposX = -dposX * ballAccel
+        dposX = -dposX
+        if(Math.abs(dposX) < 9 * factor) {
+            dposX *= ballAccel
+        }
     }
 
     // GAME OVER
@@ -138,8 +143,6 @@ document.addEventListener("touchstart", touchHandler)
 document.addEventListener("touchmove", touchHandler)
 
 function keyDownHandler(e) {
-    console.log(e.keyCode)
-
     // Player One Control  [Up - W | Down - S] / [W - 87 | S - 83]
     if(e.keyCode == 87) { pl1keyUP = true }
     else if(e.keyCode == 83) { pl1keyDOWN = true }
@@ -150,8 +153,6 @@ function keyDownHandler(e) {
 }
 
 function keyUpHandler(e) {
-    console.log(e.keyCode)
-
     // Player One Control  [Up - W | Down - S] / [W - 87 | S - 83]
     if(e.keyCode == 87) { pl1keyUP = false }
     else if(e.keyCode == 83) { pl1keyDOWN = false }

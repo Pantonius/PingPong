@@ -163,14 +163,16 @@ function keyUpHandler(e) {
 
 function touchHandler(e) {
     if(e.touches) {
-        if(e.touches[0].pageX < canvas.width / 2) {
-            // Left Touch
-            pl1posY = e.touches[0].pageY - paddleH / 2
-        } else {
-            // Right Touch
-            pl2posY = e.touches[0].pageY - paddleH / 2
+        for(var i = 0; i < touches.size; i++) {
+            if(e.touches[i].pageX < canvas.width / 2) {
+                // Left Touch -> P1
+                pl1posY = e.touches[i].pageY - paddleH / 2
+            } else {
+                // Right Touch -> P2
+                pl2posY = e.touches[i].pageY - paddleH / 2
+            }
         }
-      
+
         e.preventDefault();
     }
 }
